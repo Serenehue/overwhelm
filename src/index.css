@@ -1,0 +1,305 @@
+/* =========================
+   BASE
+   ========================= */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --rose: #d6a5a5;
+  --accent: #9fc7b3;
+
+  --bg-light: #faf7f2;
+  --bg-dark: #0f172a;
+
+  --card-light: #ffffff;
+  --card-dark: #1e293b;
+
+  --text-light: #1f2937;
+  --text-dark: #e5e7eb;
+
+  /* ring colors */
+  --ring-bg-light: rgba(0, 0, 0, 0.08);
+  --ring-bg-dark: rgba(255, 255, 255, 0.12);
+  --ring-glow: rgba(159, 199, 179, 0.35);
+}
+
+/* =========================
+   THEMES
+   ========================= */
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark {
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  color: var(--text-dark);
+}
+
+/* =========================
+   LAYOUT
+   ========================= */
+.app {
+  min-height: 100vh;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: var(--rose);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+}
+
+.helper {
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   TEXTAREA
+   ========================= */
+textarea {
+  width: 100%;
+  max-width: 700px;
+  min-height: 150px;
+  padding: 22px;
+  border-radius: 18px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+body.light textarea {
+  background: #ffffff;
+  color: #1f2937;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+
+body.dark textarea {
+  background: #1e293b;
+  color: #e5e7eb;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+.primary-btn {
+  background: var(--accent);
+  border: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: block;
+  margin: 24px auto 0;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(159, 199, 179, 0.35);
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   CARD
+   ========================= */
+.card {
+  max-width: 700px;
+  margin: 50px auto 0;
+  padding: 40px;
+  border-radius: 28px;
+  animation: fadeUp 0.6s ease;
+}
+
+body.light .card {
+  background: var(--card-light);
+}
+
+body.dark .card {
+  background: var(--card-dark);
+}
+
+/* =========================
+   STEPS
+   ========================= */
+.step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0;
+  text-align: left;
+}
+
+.step span.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* =========================
+   TIMER (POLISHED RING)
+   ========================= */
+.timer-ring {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+}
+
+/* gentle scale when running */
+.timer-ring.active {
+  transform: scale(1.04);
+}
+
+/* soft center (NO BLACK FILL) */
+body.dark .timer-ring {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.03),
+    transparent 65%
+  );
+}
+
+body.light .timer-ring {
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.03),
+    transparent 65%
+  );
+}
+
+.timer-ring svg {
+  transform: rotate(-90deg);
+}
+
+/* background ring */
+.ring-bg {
+  fill: none;
+  stroke-width: 10;
+}
+
+body.light .ring-bg {
+  stroke: var(--ring-bg-light);
+}
+
+body.dark .ring-bg {
+  stroke: var(--ring-bg-dark);
+}
+
+/* progress ring */
+.ring-progress {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 440;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 6px var(--ring-glow));
+}
+
+/* breathing glow */
+.timer-ring.active .ring-progress {
+  animation: ring-breathe 3s ease-in-out infinite;
+}
+
+@keyframes ring-breathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(159, 199, 179, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(159, 199, 179, 0.45));
+  }
+}
+
+/* =========================
+   TIMER TEXT
+   ========================= */
+.timer-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+
+body.dark .timer-text {
+  color: #eafaf5;
+  text-shadow: 0 0 8px rgba(160, 240, 215, 0.25);
+}
+
+body.light .timer-text {
+  color: #1f2937;
+}
+
+/* =========================
+   DONE BOX
+   ========================= */
+.done-box {
+  margin-top: 30px;
+  padding: 18px;
+  border-radius: 16px;
+  cursor: pointer;
+  animation: glow 2.5s ease-in-out infinite;
+}
+
+.done-box span {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* =========================
+   THEME TOGGLE
+   ========================= */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(159, 199, 179, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(159, 199, 179, 0.45);
+  }
+}
