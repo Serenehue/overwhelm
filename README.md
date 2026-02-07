@@ -1,18 +1,25 @@
-# React + Vite
+Overwhelm is a productivity focused web application that helps users turn mental overload into clear, actionable steps. Instead of trying to “do everything,” users describe what feels overwhelming and the web application breaks it down into small, manageable tasks paired with a 25 minute focus timer.
+The goal is to reduce anxiety, increase clarity, and help users take the first small step.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+📝 Describe what feels overwhelming in plain text
+🧩 Break problems into actionable steps
+⏱️ Built-in 25-minute focus timer (Pomodoro-style)
+🌗 Light / Dark mode toggle
+✅ Step completion tracking
+🎯 Minimal, calming UI for focus
 
-Currently, two official plugins are available:
+Tech Stack
+Frontend: React, Vite, JavaScript, CSS
+Backend: Node.js, Express (architecture)
+AI: Tambo AI (integration architecture)
+Deployment: Vercel (frontend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project is architected to integrate Tambo AI through a secure backend.
+Planned flow:
+User input is sent from the React frontend to the backend.
+The backend communicates with the Tambo API using environment variables.
+Tambo processes the input and returns structured, actionable steps.
+The frontend displays these steps to the user.
+For demo stability during the hackathon, the AI response is currently mocked while preserving the complete backend integration architecture. This ensures a smooth user experience without compromising the intended design.
+Environment variables are required for backend AI integration and are not committed to the repository for security reasons.
